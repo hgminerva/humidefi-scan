@@ -43,6 +43,13 @@ export class HeaderComponent implements OnInit {
               { label: 'Home' }
             ];
             break;
+          case '/dapp/scan':
+            this.iconName = "pi pi-search";
+            this.titleName = "Scan";
+            this.menuItems = [
+              { label: 'Home' }
+            ];
+            break;
           default:
             break;
         }
@@ -55,6 +62,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
   }
 }
