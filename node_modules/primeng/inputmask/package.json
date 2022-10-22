@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-inputmask.mjs",
+  "es2020": "../fesm2020/primeng-inputmask.mjs",
+  "esm2020": "../esm2020/inputmask/primeng-inputmask.mjs",
+  "fesm2020": "../fesm2020/primeng-inputmask.mjs",
+  "fesm2015": "../fesm2015/primeng-inputmask.mjs",
+  "typings": "primeng-inputmask.d.ts",
+  "sideEffects": false,
+  "name": "primeng/inputmask"
+}

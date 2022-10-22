@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-sidebar.mjs",
+  "es2020": "../fesm2020/primeng-sidebar.mjs",
+  "esm2020": "../esm2020/sidebar/primeng-sidebar.mjs",
+  "fesm2020": "../fesm2020/primeng-sidebar.mjs",
+  "fesm2015": "../fesm2015/primeng-sidebar.mjs",
+  "typings": "primeng-sidebar.d.ts",
+  "sideEffects": false,
+  "name": "primeng/sidebar"
+}

@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-skeleton.mjs",
+  "es2020": "../fesm2020/primeng-skeleton.mjs",
+  "esm2020": "../esm2020/skeleton/primeng-skeleton.mjs",
+  "fesm2020": "../fesm2020/primeng-skeleton.mjs",
+  "fesm2015": "../fesm2015/primeng-skeleton.mjs",
+  "typings": "primeng-skeleton.d.ts",
+  "sideEffects": false,
+  "name": "primeng/skeleton"
+}

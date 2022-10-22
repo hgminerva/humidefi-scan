@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-dock.mjs",
+  "es2020": "../fesm2020/primeng-dock.mjs",
+  "esm2020": "../esm2020/dock/primeng-dock.mjs",
+  "fesm2020": "../fesm2020/primeng-dock.mjs",
+  "fesm2015": "../fesm2015/primeng-dock.mjs",
+  "typings": "primeng-dock.d.ts",
+  "sideEffects": false,
+  "name": "primeng/dock"
+}

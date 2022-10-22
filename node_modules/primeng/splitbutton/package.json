@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-splitbutton.mjs",
+  "es2020": "../fesm2020/primeng-splitbutton.mjs",
+  "esm2020": "../esm2020/splitbutton/primeng-splitbutton.mjs",
+  "fesm2020": "../fesm2020/primeng-splitbutton.mjs",
+  "fesm2015": "../fesm2015/primeng-splitbutton.mjs",
+  "typings": "primeng-splitbutton.d.ts",
+  "sideEffects": false,
+  "name": "primeng/splitbutton"
+}

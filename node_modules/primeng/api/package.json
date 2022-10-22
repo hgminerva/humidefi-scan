@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-api.mjs",
+  "es2020": "../fesm2020/primeng-api.mjs",
+  "esm2020": "../esm2020/api/primeng-api.mjs",
+  "fesm2020": "../fesm2020/primeng-api.mjs",
+  "fesm2015": "../fesm2015/primeng-api.mjs",
+  "typings": "primeng-api.d.ts",
+  "sideEffects": false,
+  "name": "primeng/api"
+}

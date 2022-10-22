@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-dialog.mjs",
+  "es2020": "../fesm2020/primeng-dialog.mjs",
+  "esm2020": "../esm2020/dialog/primeng-dialog.mjs",
+  "fesm2020": "../fesm2020/primeng-dialog.mjs",
+  "fesm2015": "../fesm2015/primeng-dialog.mjs",
+  "typings": "primeng-dialog.d.ts",
+  "sideEffects": false,
+  "name": "primeng/dialog"
+}

@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-checkbox.mjs",
+  "es2020": "../fesm2020/primeng-checkbox.mjs",
+  "esm2020": "../esm2020/checkbox/primeng-checkbox.mjs",
+  "fesm2020": "../fesm2020/primeng-checkbox.mjs",
+  "fesm2015": "../fesm2015/primeng-checkbox.mjs",
+  "typings": "primeng-checkbox.d.ts",
+  "sideEffects": false,
+  "name": "primeng/checkbox"
+}

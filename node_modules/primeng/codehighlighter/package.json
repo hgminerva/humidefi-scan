@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-codehighlighter.mjs",
+  "es2020": "../fesm2020/primeng-codehighlighter.mjs",
+  "esm2020": "../esm2020/codehighlighter/primeng-codehighlighter.mjs",
+  "fesm2020": "../fesm2020/primeng-codehighlighter.mjs",
+  "fesm2015": "../fesm2015/primeng-codehighlighter.mjs",
+  "typings": "primeng-codehighlighter.d.ts",
+  "sideEffects": false,
+  "name": "primeng/codehighlighter"
+}

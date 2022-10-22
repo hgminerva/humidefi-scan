@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-speeddial.mjs",
+  "es2020": "../fesm2020/primeng-speeddial.mjs",
+  "esm2020": "../esm2020/speeddial/primeng-speeddial.mjs",
+  "fesm2020": "../fesm2020/primeng-speeddial.mjs",
+  "fesm2015": "../fesm2015/primeng-speeddial.mjs",
+  "typings": "primeng-speeddial.d.ts",
+  "sideEffects": false,
+  "name": "primeng/speeddial"
+}

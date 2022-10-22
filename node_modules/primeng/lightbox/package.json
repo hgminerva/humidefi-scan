@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-lightbox.mjs",
+  "es2020": "../fesm2020/primeng-lightbox.mjs",
+  "esm2020": "../esm2020/lightbox/primeng-lightbox.mjs",
+  "fesm2020": "../fesm2020/primeng-lightbox.mjs",
+  "fesm2015": "../fesm2015/primeng-lightbox.mjs",
+  "typings": "primeng-lightbox.d.ts",
+  "sideEffects": false,
+  "name": "primeng/lightbox"
+}

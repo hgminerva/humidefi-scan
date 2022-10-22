@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-scroller.mjs",
+  "es2020": "../fesm2020/primeng-scroller.mjs",
+  "esm2020": "../esm2020/scroller/primeng-scroller.mjs",
+  "fesm2020": "../fesm2020/primeng-scroller.mjs",
+  "fesm2015": "../fesm2015/primeng-scroller.mjs",
+  "typings": "primeng-scroller.d.ts",
+  "sideEffects": false,
+  "name": "primeng/scroller"
+}

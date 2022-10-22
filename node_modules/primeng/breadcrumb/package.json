@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-breadcrumb.mjs",
+  "es2020": "../fesm2020/primeng-breadcrumb.mjs",
+  "esm2020": "../esm2020/breadcrumb/primeng-breadcrumb.mjs",
+  "fesm2020": "../fesm2020/primeng-breadcrumb.mjs",
+  "fesm2015": "../fesm2015/primeng-breadcrumb.mjs",
+  "typings": "primeng-breadcrumb.d.ts",
+  "sideEffects": false,
+  "name": "primeng/breadcrumb"
+}

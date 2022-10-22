@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-toolbar.mjs",
+  "es2020": "../fesm2020/primeng-toolbar.mjs",
+  "esm2020": "../esm2020/toolbar/primeng-toolbar.mjs",
+  "fesm2020": "../fesm2020/primeng-toolbar.mjs",
+  "fesm2015": "../fesm2015/primeng-toolbar.mjs",
+  "typings": "primeng-toolbar.d.ts",
+  "sideEffects": false,
+  "name": "primeng/toolbar"
+}

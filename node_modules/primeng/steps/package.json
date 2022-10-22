@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-steps.mjs",
+  "es2020": "../fesm2020/primeng-steps.mjs",
+  "esm2020": "../esm2020/steps/primeng-steps.mjs",
+  "fesm2020": "../fesm2020/primeng-steps.mjs",
+  "fesm2015": "../fesm2015/primeng-steps.mjs",
+  "typings": "primeng-steps.d.ts",
+  "sideEffects": false,
+  "name": "primeng/steps"
+}

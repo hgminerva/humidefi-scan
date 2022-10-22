@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-panel.mjs",
+  "es2020": "../fesm2020/primeng-panel.mjs",
+  "esm2020": "../esm2020/panel/primeng-panel.mjs",
+  "fesm2020": "../fesm2020/primeng-panel.mjs",
+  "fesm2015": "../fesm2015/primeng-panel.mjs",
+  "typings": "primeng-panel.d.ts",
+  "sideEffects": false,
+  "name": "primeng/panel"
+}

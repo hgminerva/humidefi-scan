@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-galleria.mjs",
+  "es2020": "../fesm2020/primeng-galleria.mjs",
+  "esm2020": "../esm2020/galleria/primeng-galleria.mjs",
+  "fesm2020": "../fesm2020/primeng-galleria.mjs",
+  "fesm2015": "../fesm2015/primeng-galleria.mjs",
+  "typings": "primeng-galleria.d.ts",
+  "sideEffects": false,
+  "name": "primeng/galleria"
+}

@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-focustrap.mjs",
+  "es2020": "../fesm2020/primeng-focustrap.mjs",
+  "esm2020": "../esm2020/focustrap/primeng-focustrap.mjs",
+  "fesm2020": "../fesm2020/primeng-focustrap.mjs",
+  "fesm2015": "../fesm2015/primeng-focustrap.mjs",
+  "typings": "primeng-focustrap.d.ts",
+  "sideEffects": false,
+  "name": "primeng/focustrap"
+}

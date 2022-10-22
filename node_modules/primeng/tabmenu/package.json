@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-tabmenu.mjs",
+  "es2020": "../fesm2020/primeng-tabmenu.mjs",
+  "esm2020": "../esm2020/tabmenu/primeng-tabmenu.mjs",
+  "fesm2020": "../fesm2020/primeng-tabmenu.mjs",
+  "fesm2015": "../fesm2015/primeng-tabmenu.mjs",
+  "typings": "primeng-tabmenu.d.ts",
+  "sideEffects": false,
+  "name": "primeng/tabmenu"
+}

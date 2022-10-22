@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-dom.mjs",
+  "es2020": "../fesm2020/primeng-dom.mjs",
+  "esm2020": "../esm2020/dom/primeng-dom.mjs",
+  "fesm2020": "../fesm2020/primeng-dom.mjs",
+  "fesm2015": "../fesm2015/primeng-dom.mjs",
+  "typings": "primeng-dom.d.ts",
+  "sideEffects": false,
+  "name": "primeng/dom"
+}

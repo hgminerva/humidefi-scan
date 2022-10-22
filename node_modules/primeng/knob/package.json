@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-knob.mjs",
+  "es2020": "../fesm2020/primeng-knob.mjs",
+  "esm2020": "../esm2020/knob/primeng-knob.mjs",
+  "fesm2020": "../fesm2020/primeng-knob.mjs",
+  "fesm2015": "../fesm2015/primeng-knob.mjs",
+  "typings": "primeng-knob.d.ts",
+  "sideEffects": false,
+  "name": "primeng/knob"
+}

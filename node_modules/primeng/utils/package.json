@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/primeng-utils.mjs",
+  "es2020": "../fesm2020/primeng-utils.mjs",
+  "esm2020": "../esm2020/utils/primeng-utils.mjs",
+  "fesm2020": "../fesm2020/primeng-utils.mjs",
+  "fesm2015": "../fesm2015/primeng-utils.mjs",
+  "typings": "primeng-utils.d.ts",
+  "sideEffects": false,
+  "name": "primeng/utils"
+}
