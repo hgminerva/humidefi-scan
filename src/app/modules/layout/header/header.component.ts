@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit {
             break;
         }
 
-        this.home = { icon: 'pi pi-home', routerLink: '/dapp' };
+        this.home = { icon: 'pi pi-search', routerLink: '/dapp' };
       }
 
       if (event instanceof NavigationError) { }

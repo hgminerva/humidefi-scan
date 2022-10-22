@@ -2,14 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { DappComponent } from './dapp.component';
+import { ScanComponent } from './scan/scan.component';
 
 const routes: Routes = [
   {
     path: '',
     component: DappComponent,
     children: [
-      { path: '', component: DappComponent },
-      { path: 'scan', component: DappComponent }
+      { path: '', component: ScanComponent },
+      { path: 'scan', component: ScanComponent }
     ]
   }
 ];
