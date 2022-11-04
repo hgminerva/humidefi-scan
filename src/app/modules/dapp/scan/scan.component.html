@@ -1,0 +1,32 @@
+<div class="dapp-container">
+    <div class="w-full">
+        <div class="grid">
+            <div class="col-12 md:col-12 lg:col-12 px-2 pb-4 pt-2">
+                <span class="text-gray-600">
+                    Cras a euismod nunc, et semper nibh. Etiam hendrerit lorem libero, <img
+                        src="./../../../../assets/img/home/humedifi_logo.png" width="80"
+                        style="margin: 2px 3px -4px 3px;" /> vitae venenatis mauris venenatis
+                    ac. Maecenas consectetur quam ut risus ullamcorper consequat. Proin ac felis vitae enim eleifend
+                    gravida. 
+                </span>
+            </div>
+        </div>
+        <div class="grid pt-2">
+            <div class="col-12 md:col-12 lg:col-7">
+                <div class="text-xl font-medium pt-3">
+                    {{searchAddressInput}}
+                </div>
+            </div>
+            <div class="col-12 md:col-12 lg:col-5">
+                <div class="p-inputgroup">
+                    <input type="text" pInputText placeholder="Address" [(ngModel)]="accountAddress"
+                        class="p-inputtext-lg">
+                    <button type="button" pButton pRipple class="p-button p-button-secondary" (click)="searchClick()"
+                        icon="pi pi-search"></button>
+                </div>
+            </div>
+        </div>
+        <app-balance-info></app-balance-info>
+        <app-transactions></app-transactions>
+    </div>
+</div>

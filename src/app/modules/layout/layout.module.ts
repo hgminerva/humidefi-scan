@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LayoutRoutingModule } from './layout-routing.module';
 
@@ -10,6 +11,8 @@ import { DialogModule } from 'primeng/dialog';
 import { TableModule } from 'primeng/table';
 import { DividerModule } from 'primeng/divider';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { DropdownModule } from 'primeng/dropdown';
+import { MenubarModule } from 'primeng/menubar';
 
 import { LayoutComponent } from './layout.component';
 import { HeaderComponent } from './header/header.component';
@@ -29,6 +32,8 @@ import { TopbarComponent } from './topbar/topbar.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     LayoutRoutingModule,
     MenuModule,
     ButtonModule,
@@ -36,7 +41,9 @@ import { TopbarComponent } from './topbar/topbar.component';
     DialogModule,
     TableModule,
     DividerModule,
-    ProgressBarModule
+    ProgressBarModule,
+    DropdownModule,
+    MenubarModule
   ],
   exports: [
     HeaderComponent,

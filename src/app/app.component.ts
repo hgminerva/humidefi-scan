@@ -1,3 +1,4 @@
+import '@polkadot/api-augment';
 import { Component } from '@angular/core';
 
 @Component({

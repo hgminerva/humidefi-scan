@@ -17,14 +17,21 @@ import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { FileUploadModule } from 'primeng/fileupload';
 
 import { DappComponent } from './dapp.component';
 import { ScanComponent } from './scan/scan.component';
+import { ContractComponent } from './contract/contract.component';
+import { BalanceInfoComponent } from './balance-info/balance-info.component';
+import { TransactionsComponent } from './transactions/transactions.component';
 
 @NgModule({
   declarations: [
     DappComponent,
-    ScanComponent
+    ScanComponent,
+    ContractComponent,
+    BalanceInfoComponent,
+    TransactionsComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +50,8 @@ import { ScanComponent } from './scan/scan.component';
     ToastModule,
     MessagesModule,
     MessageModule,
-    InputNumberModule
+    InputNumberModule,
+    FileUploadModule
   ]
 })
 export class DappModule { }

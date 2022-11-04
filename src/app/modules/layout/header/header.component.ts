@@ -11,12 +11,22 @@ export class HeaderComponent implements OnInit {
 
   iconName: string = "";
   titleName: string = "";
+
   home!: MenuItem;
-  menuItems: MenuItem[] = [];
+  headerMenuItems: MenuItem[] = [
+    { label: 'Scan', routerLink: '/dapp/scan' },
+    { label: 'Block' },
+    { label: 'Contract', routerLink: '/dapp/contract' },
+    { label: 'App' }
+  ];
+
+  networks: any[] = ['Main', 'Test', 'Local'];
+  selectedNetwork: any = "Local";
 
   constructor(
     private router: Router
   ) {
+
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationStart) { }
       if (event instanceof NavigationEnd) {
@@ -39,16 +49,14 @@ export class HeaderComponent implements OnInit {
           case '/dapp':
             this.iconName = "pi pi-search";
             this.titleName = "Scan";
-            this.menuItems = [
-              { label: 'Home' }
-            ];
             break;
           case '/dapp/scan':
             this.iconName = "pi pi-search";
             this.titleName = "Scan";
-            this.menuItems = [
-              { label: 'Home' }
-            ];
+            break;
+          case '/dapp/contract':
+            this.iconName = "pi pi-file-edit";
+            this.titleName = "Contract";
             break;
           default:
             break;
@@ -59,9 +67,28 @@ export class HeaderComponent implements OnInit {
 
       if (event instanceof NavigationError) { }
     });
+
+  }
+
+  networkOnChange(event: any): void {
+    localStorage.setItem('network', this.selectedNetwork);
+    setTimeout(() => {
+      location.reload();
+    }, 300);
   }
 
   ngOnInit(): void {
-
+    let network = localStorage.getItem('network');
+    setTimeout(() => {
+      if (network == null) {
+        this.selectedNetwork = 'Test';
+        localStorage.setItem('network', this.selectedNetwork);
+        setTimeout(() => {
+          location.reload();
+        }, 100);
+      } else {
+        this.selectedNetwork = network;
+      }
+    }, 500);
   }
 }

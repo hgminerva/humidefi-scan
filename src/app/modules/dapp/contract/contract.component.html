@@ -1,0 +1,97 @@
+<div class="dapp-container">
+    <div class="w-full">
+        <div class="grid">
+            <div class="col-12 md:col-12 lg:col-12 px-2 pb-4 pt-2">
+                <span class="text-gray-600">
+                    Pellentesque fermentum, ut consectetur eros
+                    ex ornare lectus. <img src="./../../../../assets/img/home/humedifi_logo.png" width="80"
+                        style="margin: 2px 3px -4px 3px;" /> Pellentesque pulvinar neque quis est vulputate sagittis.
+                    Aliquam nec sapien et lorem faucibus mattis sed sed lorem. Ut sed tincidunt dolor, non placerat est.
+                    Ut id vestibulum lectus. Donec condimentum nibh non turpis dignissim semper. Proin sollicitudin
+                    nulla a augue fermentum tempor.
+                </span>
+            </div>
+        </div>
+        <div class="grid pt-2">
+            <div class="col-12 md:col-12 lg:col-7">
+                <div class="text-xl font-medium pt-3">
+                    {{searchAddressInput}}
+                </div>
+            </div>
+            <div class="col-12 md:col-12 lg:col-5">
+                <div class="p-inputgroup">
+                    <input type="text" pInputText placeholder="Address" [(ngModel)]="accountAddress"
+                        class="p-inputtext-lg">
+                    <button type="button" pButton pRipple class="p-button p-button-secondary" (click)="searchClick()"
+                        icon="pi pi-search"></button>
+                </div>
+            </div>
+        </div>
+        <app-balance-info></app-balance-info>
+        <div class="grid pt-2">
+            <div class="col-12 md:col-12 lg:col-12 text-right">
+                <button pButton type="button" label="Upload Contract" icon="pi pi-upload" (click)="showUploadDialog = true" class="p-button p-button-danger"></button>
+            </div>
+        </div>
+        <app-transactions></app-transactions>
+    </div>
+</div>
+
+<p-dialog [(visible)]="showUploadDialog" [style]="{width: '70vw'}" [modal]="true" [closable]="false">
+    <p-fileUpload [chooseLabel]="'Select Files'" [chooseStyleClass]="'p-button p-button-outlined'"
+        [uploadLabel]="'Upload & Deploy'" [uploadStyleClass]="'p-button p-button-success'"
+        [cancelStyleClass]="'p-button p-button-danger'" [multiple]="true" [fileLimit]="2" [customUpload]="true"
+        (onSelect)="onSelect($event)" (onClear)="onClear()" (uploadHandler)="uploadHandler($event)">
+        <ng-template pTemplate="toolbar">
+
+        </ng-template>
+        <ng-template let-file pTemplate="file">
+        </ng-template>
+        <ng-template pTemplate="content" let-files>
+            <div *ngIf="constructors.length > 0">
+                <p-tabView>
+                    <p-tabPanel header="Files">
+                        <div *ngFor="let file of files">
+                            {{file.name}} {{file.size}}
+                        </div>
+                    </p-tabPanel>
+                    <p-tabPanel header="Required Constructors">
+                        <div *ngFor="let field of constructors">
+                            <div class="field">
+                                <label for="username1" class="block">{{field.label}}</label>
+                                <input id="username1" type="username" aria-describedby="username1-help" pInputText />
+                            </div>
+                        </div>
+                    </p-tabPanel>
+                </p-tabView>
+            </div>
+        </ng-template>
+    </p-fileUpload>
+</p-dialog>
+
+<p-dialog [(visible)]="showProcessDialog" [style]="{width: '50vw'}" [modal]="true" [closable]="false">
+    <div class="w-full text-center">
+        <div class="w-full" *ngIf="!isUploadProcessed && !isUploadError">
+            <p-progressSpinner></p-progressSpinner>
+            <br /><br />
+        </div>
+        <div class="w-full" *ngIf="isUploadProcessed">
+            <i class="pi pi-check" style="font-size: 5rem; font-weight: bold; color: rgb(119, 255, 119);"></i>
+            <br />
+        </div>
+        <div class="w-full" *ngIf="isUploadError">
+            <i class="pi pi-times" style="font-size: 5rem; font-weight: bold; color: rgb(202, 74, 74);"></i>
+            <br />
+        </div>
+        <div style="width: 100%; white-space: pre-wrap;">
+            {{uploadProcessMessage}}
+        </div>
+        <br />
+        <div class="w-full" *ngIf="isUploadProcessed || isUploadError">
+            <br />
+            <button pButton type="button" label="OK" class="p-button-text p-button-danger text-white"
+                (click)="showProcessDialog = false"
+                style="background: linear-gradient(90deg,rgba(244,60,113,1) 0%,rgba(240,73,65,1) 100%);"></button>
+        </div>
+    </div>
+</p-dialog>

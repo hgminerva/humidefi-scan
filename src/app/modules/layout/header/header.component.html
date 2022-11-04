@@ -13,13 +13,24 @@
             </div>
         </div>
         <div class="col text-right">
-            <!-- <p-button styleClass="p-button-outlined p-button-secondary p-button-sm" (click)="changeAccount()">
-                <img alt="logo" src="./../../../../assets/img/home/polkadot_icon.png" style="width: 1rem" />
-                <span class="ml-2 font-bold">{{walletName}}</span>
-            </p-button> -->
-            <!-- <p-button styleClass="p-button-secondary p-button-sm">
-                <i class="pi pi-cog "></i>
-            </p-button> -->
+            <p-dropdown [options]="networks" placeholder="Network" [(ngModel)]="selectedNetwork" optionValue="name"
+                (onChange)="networkOnChange($event)" class="p-inputtext-lg"
+                [style]="{'float':'right', 'margin-top':'-10px', 'margin-left':'15px'}">
+                <ng-template pTemplate="selectedItem">
+                    <i *ngIf="selectedNetwork == 'testnet'"></i>
+                    <i *ngIf="selectedNetwork == 'devnet'"></i>
+                    &nbsp;
+                    <span class="text-xl">
+                        {{selectedNetwork}}
+                    </span>
+                </ng-template>
+                <ng-template let-item pTemplate="item">
+                    <span class="text-xl">
+                        {{item}}
+                    </span>
+                </ng-template>
+            </p-dropdown>
+            <p-menubar [model]="headerMenuItems" [style]="{'float':'right','margin-top':'-11px'}"></p-menubar>
         </div>
     </div>
 </div>

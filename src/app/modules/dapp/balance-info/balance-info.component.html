@@ -1,0 +1,37 @@
+<div class="grid pt-2">
+    <div class="col-12 md:col-12 lg:col-5">
+        <div class="card border-round-2xl" style="box-shadow: 3px 2px 5px 0px #dfdfdf !important;">
+            <div class="flex-wrap card-container overflow-hidden w-full">
+                <div class="bg-white px-5 pt-4 pb-4 border-round-2xl" style="min-height: 230px;">
+                    <div class="text-xl font-medium mb-3" style="color: #ef4943">
+                        Balance
+                    </div>
+                    <div class="p-inputgroup">
+                        <input class="balance-value text-2xl" [(ngModel)]="umiBalance" type="text" pInputText
+                            placeholder="00.0">
+                        <img src="./../../../../assets/img/tokens/UMI.png" width="50" />
+                    </div>
+                    <br />
+                    <div class="p-inputgroup">
+                        <input class="balance-value text-2xl" [(ngModel)]="phpUBalance" type="text" pInputText
+                            placeholder="00.0">
+                        <img src="./../../../../assets/img/tokens/PHPU.png" width="50" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 md:col-12 lg:col-7">
+        <div class="card border-round-2xl" style="box-shadow: 3px 2px 5px 0px #999999 !important;">
+            <div class="flex-wrap card-container overflow-hidden w-full">
+                <div class="px-5 pt-4 pb-4 text-white border-round-2xl"
+                    style="min-height: 230px; background: linear-gradient(90deg,rgba(244,60,113,1) 0%,rgba(240,73,65,1) 100%);">
+                    <div class="text-xl font-medium mb-3 text-white">
+                        Information
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
