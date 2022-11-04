@@ -40,7 +40,10 @@
                                     </div>
                                     <div class="col-12 md:col-12 lg:col-6 text-right">
                                         <button pButton type="button" label="Upload Contract" icon="pi pi-upload"
-                                            (click)="showUploadDialog = true" class="p-button p-button-danger" [style]="{'margin-top':'-10px'}"></button>
+                                            (click)="showUploadDialog = true" class="p-button p-button-danger"
+                                            [style]="{'margin-top':'-10px', 'margin-right':'10px'}"></button>
+                                        <button pButton type="button" label="Export" icon="pi pi-download"
+                                            class="p-button p-button-success" [style]="{'margin-top':'-10px'}"></button>
                                     </div>
                                 </div>
                                 <app-transactions></app-transactions>

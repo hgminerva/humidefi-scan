@@ -31,8 +31,16 @@
                     <div class="flex-wrap card-container overflow-hidden w-full">
                         <div class="bg-white px-5 pt-4 pb-4 border-round-2xl" style="min-height: 180px;">
                             <div class="w-full">
-                                <div class="text-xl font-medium mb-3" style="color: #ef4943">
-                                    Transactions
+                                <div class="grid pt-2">
+                                    <div class="col-12 md:col-12 lg:col-6">
+                                        <div class="text-xl font-medium mb-3" style="color: #ef4943">
+                                            Transactions
+                                        </div>
+                                    </div>
+                                    <div class="col-12 md:col-12 lg:col-6 text-right">
+                                        <button pButton type="button" label="Export" icon="pi pi-download"
+                                            class="p-button p-button-success" [style]="{'margin-top':'-10px'}"></button>
+                                    </div>
                                 </div>
                                 <app-transactions></app-transactions>
                             </div>
