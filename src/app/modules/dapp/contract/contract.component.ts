@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ContractUploaderService } from 'src/app/services/contract-uploader/contract-uploader.service';
 import camelCase from 'camelcase';
 import { ContractModel } from 'src/app/models/contract.model';
+import { BalanceInfoComponent } from '../balance-info/balance-info.component';
 
 @Component({
   selector: 'app-contract',
@@ -10,6 +11,7 @@ import { ContractModel } from 'src/app/models/contract.model';
   styleUrls: ['./contract.component.scss']
 })
 export class ContractComponent implements OnInit {
+  @ViewChild(BalanceInfoComponent) balanceInfoComponent: any;
 
   constructor(
     private contractUploaderService: ContractUploaderService
@@ -152,6 +154,7 @@ export class ContractComponent implements OnInit {
 
   searchClick() {
     this.searchAddressInput = this.accountAddress;
+    this.balanceInfoComponent.searchClick(this.accountAddress);
   }
   
   ngOnInit(): void {

@@ -7,26 +7,39 @@
                         src="./../../../../assets/img/home/humedifi_logo.png" width="80"
                         style="margin: 2px 3px -4px 3px;" /> vitae venenatis mauris venenatis
                     ac. Maecenas consectetur quam ut risus ullamcorper consequat. Proin ac felis vitae enim eleifend
-                    gravida. 
+                    gravida.
                 </span>
             </div>
         </div>
         <div class="grid pt-2">
-            <div class="col-12 md:col-12 lg:col-7">
-                <div class="text-xl font-medium pt-3">
-                    {{searchAddressInput}}
-                </div>
-            </div>
-            <div class="col-12 md:col-12 lg:col-5">
+            <div class="col-12 md:col-12 lg:col-12">
                 <div class="p-inputgroup">
-                    <input type="text" pInputText placeholder="Address" [(ngModel)]="accountAddress"
+                    <input type="text" pInputText placeholder="Search Address" [(ngModel)]="accountAddress"
                         class="p-inputtext-lg">
                     <button type="button" pButton pRipple class="p-button p-button-secondary" (click)="searchClick()"
-                        icon="pi pi-search"></button>
+                        icon="pi pi-search" label="Search"></button>
+                </div>
+                <div class="text-xl font-medium pt-3 px-2 text-gray-600" style="height: 50px;">
+                    Address: {{searchAddressInput}}
                 </div>
             </div>
         </div>
         <app-balance-info></app-balance-info>
-        <app-transactions></app-transactions>
+        <div class="grid pt-2">
+            <div class="col-12 md:col-12 lg:col-12">
+                <div class="card border-round-2xl" style="box-shadow: 3px 2px 5px 0px #dfdfdf !important;">
+                    <div class="flex-wrap card-container overflow-hidden w-full">
+                        <div class="bg-white px-5 pt-4 pb-4 border-round-2xl" style="min-height: 180px;">
+                            <div class="w-full">
+                                <div class="text-xl font-medium mb-3" style="color: #ef4943">
+                                    Transactions
+                                </div>
+                                <app-transactions></app-transactions>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

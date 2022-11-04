@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
     { label: 'Scan', routerLink: '/dapp/scan' },
     { label: 'Block' },
     { label: 'Contract', routerLink: '/dapp/contract' },
-    { label: 'App' }
+    { label: 'App', url: 'https://app.humidefi.com' }
   ];
 
   networks: any[] = ['Main', 'Test', 'Local'];
@@ -26,26 +26,10 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router
   ) {
-
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationStart) { }
       if (event instanceof NavigationEnd) {
         switch (event.url) {
-          // case '/dapp':
-          //   this.iconName = "pi pi-home";
-          //   this.titleName = "Home";
-          //   this.menuItems = [
-          //     { label: 'Home' }
-          //   ];
-          //   break;
-          // case '/dapp/dashboard':
-          //   this.iconName = "pi pi-home";
-          //   this.titleName = "Home";
-
-          //   this.menuItems = [
-          //     { label: 'Home' }
-          //   ];
-          //   break;
           case '/dapp':
             this.iconName = "pi pi-search";
             this.titleName = "Scan";
@@ -83,6 +67,7 @@ export class HeaderComponent implements OnInit {
       if (network == null) {
         this.selectedNetwork = 'Test';
         localStorage.setItem('network', this.selectedNetwork);
+
         setTimeout(() => {
           location.reload();
         }, 100);

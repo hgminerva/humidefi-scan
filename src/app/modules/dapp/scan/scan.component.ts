@@ -1,9 +1,5 @@
-import { DecimalPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { AppSettings } from 'src/app/app-settings';
-import { AccountTransactionModel } from 'src/app/models/account-transaction.model';
-import { PhpuContractService } from 'src/app/services/phpu-contract/phpu-contract.service';
-import { ScanService } from 'src/app/services/scan/scan.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { BalanceInfoComponent } from '../balance-info/balance-info.component';
 
 @Component({
   selector: 'app-scan',
@@ -11,6 +7,7 @@ import { ScanService } from 'src/app/services/scan/scan.service';
   styleUrls: ['./scan.component.scss']
 })
 export class ScanComponent implements OnInit {
+  @ViewChild(BalanceInfoComponent) balanceInfoComponent: any;
 
   constructor() { }
 
@@ -19,6 +16,7 @@ export class ScanComponent implements OnInit {
 
   searchClick() {
     this.searchAddressInput = this.accountAddress;
+    this.balanceInfoComponent.searchClick(this.accountAddress);
   }
 
   ngOnInit(): void {

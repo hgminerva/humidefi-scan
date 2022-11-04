@@ -1,41 +1,26 @@
-<div class="grid pt-2">
-    <div class="col-12 md:col-12 lg:col-12">
-        <div class="card border-round-2xl" style="box-shadow: 3px 2px 5px 0px #dfdfdf !important;">
-            <div class="flex-wrap card-container overflow-hidden w-full">
-                <div class="bg-white px-5 pt-4 pb-4 border-round-2xl" style="min-height: 180px;">
-                    <div class="w-full">
-                        <div class="text-xl font-medium mb-3" style="color: #ef4943">
-                            Transactions
-                        </div>
-                        <p-table [value]="accountTransactionList" styleClass="account-transaction-table">
-                            <ng-template pTemplate="header">
-                                <tr>
-                                    <th>Hash</th>
-                                    <th>Methods</th>
-                                    <th>Blocks</th>
-                                    <th>Age</th>
-                                    <th>From</th>
-                                    <th>To</th>
-                                    <th>Value</th>
-                                    <th>Fee</th>
-                                </tr>
-                            </ng-template>
-                            <ng-template pTemplate="body" let-transaction>
-                                <tr class="transaction-tr">
-                                    <td class="transaction-td">{{transaction.hash}}</td>
-                                    <td class="transaction-td">{{transaction.method}}</td>
-                                    <td class="transaction-td">{{transaction.block}}</td>
-                                    <td class="transaction-td">{{transaction.age}}</td>
-                                    <td class="transaction-td">{{transaction.from}}</td>
-                                    <td class="transaction-td">{{transaction.to}}</td>
-                                    <td class="transaction-td">{{transaction.value}}</td>
-                                    <td class="transaction-td">{{transaction.fee}}</td>
-                                </tr>
-                            </ng-template>
-                        </p-table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<p-table [value]="accountTransactionList" styleClass="account-transaction-table">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Hash</th>
+            <th>Methods</th>
+            <th>Blocks</th>
+            <th>Age</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Value</th>
+            <th>Fee</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-transaction>
+        <tr class="transaction-tr">
+            <td class="transaction-td">{{transaction.hash}}</td>
+            <td class="transaction-td">{{transaction.method}}</td>
+            <td class="transaction-td">{{transaction.block}}</td>
+            <td class="transaction-td">{{transaction.age}}</td>
+            <td class="transaction-td">{{transaction.from}}</td>
+            <td class="transaction-td">{{transaction.to}}</td>
+            <td class="transaction-td">{{transaction.value}}</td>
+            <td class="transaction-td">{{transaction.fee}}</td>
+        </tr>
+    </ng-template>
+</p-table>

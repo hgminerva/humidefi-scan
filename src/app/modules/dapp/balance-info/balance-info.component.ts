@@ -1,7 +1,6 @@
 import { DecimalPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AppSettings } from 'src/app/app-settings';
-import { AccountTransactionModel } from 'src/app/models/account-transaction.model';
 import { PhpuContractService } from 'src/app/services/phpu-contract/phpu-contract.service';
 import { ScanService } from 'src/app/services/scan/scan.service';
 
@@ -21,15 +20,13 @@ export class BalanceInfoComponent implements OnInit {
 
   umiBalance: string = '0';
   phpUBalance: number = 0;
-  accountAddress: string = '';
 
-  searchClick() {
-    this.scanService.getAccountBalance(this.accountAddress).then(balance => {
+  public searchClick(accountAddress: string) {
+    this.scanService.getAccountBalance(accountAddress).then(balance => {
       this.umiBalance = balance;
-      console.log(balance)
     })
 
-    this.scanService.getAccountDetail(this.accountAddress);
+    this.scanService.getAccountDetail(accountAddress);
   }
 
   async getDexPHPUBalance() {
