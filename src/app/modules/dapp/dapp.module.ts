@@ -20,6 +20,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 
 import { DappComponent } from './dapp.component';
 import { ScanComponent } from './scan/scan.component';
+import { AppSettings } from 'src/app/app-settings';
 
 @NgModule({
   declarations: [

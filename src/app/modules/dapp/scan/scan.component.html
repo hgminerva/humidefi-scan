@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="grid">
+        <div class="col-8"></div>
+        <div class="col-4">
+            <div class="p-inputgroup">
+                <input type="text" pInputText placeholder="Address" [(ngModel)]="accountAddress">
+                <button type="button" pButton pRipple styleClass="p-button-danger" (click)="searchClick()">Search</button>
+            </div>
+        </div>
+        <div class="col-12" style="padding-left: 20px;">
+            {{searchAddressInput}}
+        </div>
+        <div class="col-6 scan-container">
+            <div class="scan-balances theme-color">
+                <b>Balance</b>
+                <div class="col-7">
+                    <div class="p-inputgroup">
+                        <input class="balance-value" [(ngModel)]="umiBalance" type="text" pInputText placeholder="00.0">   
+                        <img src="./../../../../assets/img/tokens/UMI.png" width="40" /> 
+                    </div>
+                </div>
+                <div class="col-7">
+                    <div class="p-inputgroup">
+                        <input class="balance-value" [(ngModel)]="phpUBalance" type="text" pInputText placeholder="00.0">   
+                        <img src="./../../../../assets/img/tokens/PHPU.png" width="40" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 scan-container">
+            <div class="scan-info theme-color ">
+                information
+            </div>
+        </div>
+
+        <div class="col-12 scan-container">
+            <div class="scan-transaction theme-color">
+                <p-table [value]="accountTransactionList" styleClass="account-transaction-table">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Hash</th>
+                            <th>Methods</th>
+                            <th>Blocks</th>
+                            <th>Age</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Value</th>
+                            <th>Fee</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-transaction>
+                        <tr class="transaction-tr">
+                            <td class="transaction-td">{{transaction.hash}}</td>
+                            <td class="transaction-td">{{transaction.method}}</td>
+                            <td class="transaction-td">{{transaction.block}}</td>
+                            <td class="transaction-td">{{transaction.age}}</td>
+                            <td class="transaction-td">{{transaction.from}}</td>
+                            <td class="transaction-td">{{transaction.to}}</td>
+                            <td class="transaction-td">{{transaction.value}}</td>
+                            <td class="transaction-td">{{transaction.fee}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>

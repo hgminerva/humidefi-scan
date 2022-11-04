@@ -71,8 +71,7 @@ body {
   display: block;
 }
 
-.identicon-styles {
-}
+.identicon-styles {}
 
 .footer-container {
   padding-top: 5rem;
@@ -84,22 +83,18 @@ body {
 .version-container {
   padding-top: 10px;
   padding-bottom: 10px;
-  background: linear-gradient(
-    90deg,
-    rgba(244, 60, 113, 1) 0%,
-    rgba(240, 73, 65, 1) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(244, 60, 113, 1) 0%,
+      rgba(240, 73, 65, 1) 100%);
 }
 
 .topbar-container {
   text-align: center;
   width: 100%;
   padding: 5px;
-  background: linear-gradient(
-    90deg,
-    rgba(244, 60, 113, 1) 0%,
-    rgba(240, 73, 65, 1) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(244, 60, 113, 1) 0%,
+      rgba(240, 73, 65, 1) 100%);
   box-shadow: 3px 2px 5px 0px #999999 !important;
 }
 
@@ -125,4 +120,21 @@ body {
   padding: 15px;
   width: 100%;
   text-align: center;
+}
+
+p-menubar {
+  .p-component {
+    float: right;
+    border: none;
+    background-color: transparent;
+  }
+}
+
+.p-datatable .p-datatable-thead>tr>th {
+  background: transparent !important;
+}
+
+.transaction-td, .transaction-tr {
+  background: transparent !important;
+  color: black;
 }

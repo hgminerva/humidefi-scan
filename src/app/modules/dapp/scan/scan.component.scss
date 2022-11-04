@@ -1,0 +1,38 @@
+.container {
+    padding: 20px;
+}
+
+.scan-balances,
+.scan-info,
+.scan-transaction {
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.theme-color {
+    background: linear-gradient(90deg,
+            rgba(244, 60, 113, 1) 0%,
+            rgba(240, 73, 65, 1) 100%);
+}
+
+.scan-container {
+    padding: 20px;
+}
+
+.scan-balances {}
+
+.scan-info {}
+
+.scan-transaction {}
+
+.p-datatable .p-datatable-thead>tr>th {
+    background: transparent !important;
+}
+
+.balance-value {
+    background: transparent;
+    border: none;
+    text-align: right;
+    width: 70% !important;
+    color: black;
+}

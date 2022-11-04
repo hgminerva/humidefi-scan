@@ -17,6 +17,9 @@ import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MobilebarComponent } from './mobilebar/mobilebar.component';
 import { TopbarComponent } from './topbar/topbar.component';
+import {DropdownModule} from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
+import {MenubarModule} from 'primeng/menubar';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,7 @@ import { TopbarComponent } from './topbar/topbar.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     LayoutRoutingModule,
     MenuModule,
     ButtonModule,
@@ -36,7 +40,9 @@ import { TopbarComponent } from './topbar/topbar.component';
     DialogModule,
     TableModule,
     DividerModule,
-    ProgressBarModule
+    ProgressBarModule,
+    DropdownModule,
+    MenubarModule,
   ],
   exports: [
     HeaderComponent,
