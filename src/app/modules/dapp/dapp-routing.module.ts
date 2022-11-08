@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DappComponent } from './dapp.component';
 import { ScanComponent } from './scan/scan.component';
 import { ContractComponent } from './contract/contract.component';
+import { BlocksComponent } from './blocks/blocks.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,7 @@ const routes: Routes = [
     children: [
       { path: '', component: ScanComponent },
       { path: 'scan', component: ScanComponent },
+      { path: 'blocks', component: BlocksComponent },
       { path: 'contract', component: ContractComponent },
     ]
   }

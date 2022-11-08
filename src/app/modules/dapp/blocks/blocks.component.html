@@ -1,0 +1,38 @@
+<div class="dapp-container">
+    <div class="grid">
+        <div class="col-12 md:col-12 lg:col-12 ">
+            <div class="card border-round-3xl" style="box-shadow: 3px 2px 5px 0px #dfdfdf !important;">
+                <div class="flex-wrap card-container overflow-hidden w-full">
+                    <div class="bg-white px-6 pt-4 pb-4 border-round-3xl" style="height: calc(92vh - 130px)">
+                        <p-table [value]="blocks" responsiveLayout="scroll" [scrollable]="true" scrollHeight="flex">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 10px">Time</th>
+                                    <th style="width: 10px">Block</th>
+                                    <th style="width: 100%">Extrinsic</th>
+                                    <th style="width: 10px">Weight</th>
+                                    <th style="width: 10px">Signature</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-block>
+                                <tr>
+                                    <td style="width: 10px">{{ convertMsToTime(block.timestamp)}}</td>
+                                    <td style="width: 10px">{{block.block}}</td>
+                                    <td style="width: 100%">
+                                        <ul class="ul-extrinsic" >
+                                            <ng-container *ngFor="let extrinsic of block.extrinsics; let i = index">
+                                                <li [ngClass]="{ extrinsic: extrinsic.extrinsic == 'system.ExtrinsicSuccess'}" class="latestExtrinsic">{{extrinsic.extrinsic}}</li> 
+                                            </ng-container>
+                                        </ul >
+                                    </td>
+                                    <td style="width: 10px">{{block.weight | number}}</td>
+                                    <td style="width: 10px">{{ getSubstring(block.signature)}}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

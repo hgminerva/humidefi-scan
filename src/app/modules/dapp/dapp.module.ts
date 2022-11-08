@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DappRoutingModule } from './dapp-routing.module';
@@ -24,6 +24,7 @@ import { ScanComponent } from './scan/scan.component';
 import { ContractComponent } from './contract/contract.component';
 import { BalanceInfoComponent } from './balance-info/balance-info.component';
 import { TransactionsComponent } from './transactions/transactions.component';
+import { BlocksComponent } from './blocks/blocks.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { TransactionsComponent } from './transactions/transactions.component';
     ScanComponent,
     ContractComponent,
     BalanceInfoComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    BlocksComponent
   ],
   imports: [
     CommonModule,
@@ -51,7 +53,11 @@ import { TransactionsComponent } from './transactions/transactions.component';
     MessagesModule,
     MessageModule,
     InputNumberModule,
-    FileUploadModule
+    FileUploadModule,
+    TableModule
+  ],
+  providers: [
+    DatePipe,
   ]
 })
 export class DappModule { }

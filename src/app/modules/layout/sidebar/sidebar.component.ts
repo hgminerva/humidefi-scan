@@ -16,6 +16,7 @@ export class SidebarComponent implements OnInit {
     this.menuItems = [
       // { label: 'Home', routerLink: '/dapp/dashboard', icon: 'pi pi-home' },
       { label: 'Scan', routerLink: '/dapp/scan', icon: 'pi pi-search' },
+      { label: 'Block', routerLink: '/dapp/blocks', icon: 'pi pi-th-large' },
       { label: 'Contract', routerLink: '/dapp/contract', icon: 'pi pi-file-edit' },
     ];
   }

@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   home!: MenuItem;
   headerMenuItems: MenuItem[] = [
     { label: 'Scan', routerLink: '/dapp/scan' },
-    { label: 'Block' },
+    { label: 'Block', routerLink: '/dapp/blocks'  },
     { label: 'Contract', routerLink: '/dapp/contract' },
     { label: 'App', url: 'https://app.humidefi.com' }
   ];
