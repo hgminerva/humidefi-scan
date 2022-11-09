@@ -16,12 +16,21 @@ import { Observable, Subject } from 'rxjs';
 })
 export class PolkadotService {
 
+  wsProvider;
+
   constructor(
     private appSettings: AppSettings
-  ) { }
+  ) {
+    let network: any = localStorage.getItem('network') == null ? '' : localStorage.getItem('network');
+    if (network == 'Main') {
+      this.wsProvider = new WsProvider(this.appSettings.wsProviderEndpoint);
+    } else if (network == 'Test') {
+      this.wsProvider = new WsProvider(this.appSettings.localWSProviderEndpoint);
+    }
+  }
 
-  wsProvider = new WsProvider(this.appSettings.wsProviderEndpoint);
-  api = ApiPromise.create({ provider: this.wsProvider });
+  // wsProvider = new WsProvider(this.appSettings.wsProviderEndpoint);
+  // api = ApiPromise.create({ provider: this.wsProvider });
   keypair = this.appSettings.keypair;
   extensions = web3Enable('humidefi');
   accounts = web3Accounts();
@@ -82,7 +91,8 @@ export class PolkadotService {
   }
 
   async getBalance(keypair: string): Promise<string> {
-    const api = await this.api;
+    // const api = await this.api;
+    const api = await ApiPromise.create({ provider: this.wsProvider });
     const { nonce, data: balance } = await api.query.system.account(keypair);
     const chainDecimals = api.registry.chainDecimals[0];
     formatBalance.setDefaults({ decimals: chainDecimals, unit: 'UMI' });
@@ -94,7 +104,8 @@ export class PolkadotService {
   }
 
   async transfer(data: TransferModel): Promise<void> {
-    const api = await this.api;
+    // const api = await this.api;
+    const api = await ApiPromise.create({ provider: this.wsProvider });
     const chainDecimals = api.registry.chainDecimals[0];
 
     const injector = await web3FromAddress(this.keypair);
@@ -127,7 +138,8 @@ export class PolkadotService {
   }
 
   async getChainTokens(keypair: string): Promise<string[]> {
-    const api = await this.api;
+    // const api = await this.api;
+    const api = await ApiPromise.create({ provider: this.wsProvider });
     const tokens = api.registry.chainTokens;
 
     return tokens;
