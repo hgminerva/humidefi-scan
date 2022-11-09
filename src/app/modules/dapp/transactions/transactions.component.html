@@ -1,26 +1,106 @@
-<p-table [value]="accountTransactionList" styleClass="account-transaction-table">
+<p-table [value]="accountTransactionList" responsiveLayout="scroll" [scrollable]="true"
+    styleClass="account-transaction-table">
     <ng-template pTemplate="header">
         <tr>
-            <th>Hash</th>
-            <th>Methods</th>
-            <th>Blocks</th>
-            <th>Age</th>
-            <th>From</th>
-            <th>To</th>
-            <th>Value</th>
-            <th>Fee</th>
+            <th style="max-width: 350px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Hash</th>
+            <th style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Methods</th>
+            <th style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Blocks</th>
+            <th style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Age</th>
+            <th style="max-width: 350px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">From</th>
+            <th style="max-width: 350px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">To</th>
+            <th style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Value</th>
+            <th style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Fee</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-transaction>
         <tr class="transaction-tr">
-            <td class="transaction-td">{{transaction.hash}}</td>
-            <td class="transaction-td">{{transaction.method}}</td>
-            <td class="transaction-td">{{transaction.block}}</td>
-            <td class="transaction-td">{{transaction.age}}</td>
-            <td class="transaction-td">{{transaction.from}}</td>
-            <td class="transaction-td">{{transaction.to}}</td>
-            <td class="transaction-td">{{transaction.value}}</td>
-            <td class="transaction-td">{{transaction.fee}}</td>
+            <td style="max-width: 350px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                <button pButton type="button" label="{{transaction.hash}}" icon="pi pi-eye"
+                    class="p-button-text p-button-text p-button-secondary p-button-sm"
+                    (click)="viewTransactionDetails(transaction)"></button>
+            </td>
+            <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                {{transaction.method}}</td>
+            <td style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                {{transaction.blocks}}</td>
+            <td style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                {{transaction.age}}</td>
+            <td style="max-width: 350px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                {{transaction.from}}</td>
+            <td style="max-width: 350px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                {{transaction.to}}</td>
+            <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                {{transaction.value}}</td>
+            <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                {{transaction.fee}}</td>
         </tr>
     </ng-template>
 </p-table>
+
+
+<p-dialog [(visible)]="showTransactionDetailsDialog" [style]="{width: '50vw'}" [modal]="true" [closable]="true">
+    <ng-template pTemplate="header">
+        <span class="text-2xl">
+            Transaction Details
+        </span>
+    </ng-template>
+    <div class="grid">
+        <div class="col-12 md:col-12 lg:col-12">
+            <div class="field">
+                <label class="block">Tx Hash:</label>
+                <input type="text" pInputText readonly [style]="{'width':'100%'}" [(ngModel)]="currentTransactionData.hash" />
+            </div>
+        </div>
+    </div>
+    <div class="grid">
+        <div class="col-12 md:col-12 lg:col-12">
+            <div class="field">
+                <label class="block">Method:</label>
+                <input type="text" pInputText readonly [style]="{'width':'100%'}" [(ngModel)]="currentTransactionData.method" />
+            </div>
+        </div>
+    </div>
+    <div class="grid">
+        <div class="col-12 md:col-12 lg:col-6">
+            <div class="field">
+                <label class="block">Blocks:</label>
+                <input type="text" pInputText readonly [style]="{'width':'100%'}" [(ngModel)]="currentTransactionData.blocks" />
+            </div>
+        </div>
+        <div class="col-12 md:col-12 lg:col-6">
+            <div class="field">
+                <label class="block">Age:</label>
+                <input type="text" pInputText readonly [style]="{'width':'100%'}" [(ngModel)]="currentTransactionData.age" />
+            </div>
+        </div>
+    </div>
+    <div class="grid">
+        <div class="col-12 md:col-12 lg:col-12">
+            <div class="field">
+                <label class="block">From:</label>
+                <input type="text" pInputText readonly [style]="{'width':'100%'}" [(ngModel)]="currentTransactionData.from" />
+            </div>
+        </div>
+    </div>
+    <div class="grid">
+        <div class="col-12 md:col-12 lg:col-12">
+            <div class="field">
+                <label class="block">To:</label>
+                <input type="text" pInputText readonly [style]="{'width':'100%'}" [(ngModel)]="currentTransactionData.to" />
+            </div>
+        </div>
+    </div>
+    <div class="grid">
+        <div class="col-12 md:col-12 lg:col-12">
+            <div class="field">
+                <label class="block">Tx Fee:</label>
+                <input type="text" pInputText readonly [style]="{'width':'100%'}" [(ngModel)]="currentTransactionData.fee" />
+            </div>
+        </div>
+    </div>
+    
+    <ng-template pTemplate="footer">
+        <br />
+        <br />
+    </ng-template>
+</p-dialog>

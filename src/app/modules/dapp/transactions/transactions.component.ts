@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountTransactionModel } from 'src/app/models/account-transaction.model';
+import { TransactionsService } from 'src/app/services/transactions/transactions.service';
 
 @Component({
   selector: 'app-transactions',
@@ -8,22 +9,36 @@ import { AccountTransactionModel } from 'src/app/models/account-transaction.mode
 })
 export class TransactionsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private transactionsService: TransactionsService
+  ) { }
 
-  accountTransactionList: AccountTransactionModel[] = [
-    {
-      hash: '0x1232211222',
-      method: 'Mint',
-      block: '123,2321',
-      age: '1hr',
-      from: '0xb221212',
-      to: '0xb22121',
-      value: '',
-      fee: '',
-    },
-  ];
+  showTransactionDetailsDialog: boolean = false;
+  currentTransactionData: AccountTransactionModel = new AccountTransactionModel();
+  accountTransactionList: AccountTransactionModel[] = [];
+  
+  // accountTransactionList: AccountTransactionModel[] = [{
+  //   hash: '0xb96dbaa7a11afa26ba545f8f88e94c32c398b464657a3bf72129998fc1f576cf',
+  //   method: 'Withdraw',
+  //   blocks: '758',
+  //   age: '0',
+  //   from: '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY',
+  //   to: '5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty',
+  //   value: '1,482,244,295',
+  //   fee: '0'
+  // }];
 
-  ngOnInit(): void {
+  async getTransactions(): Promise<void> {
+    let transactions: Promise<AccountTransactionModel[]> = this.transactionsService.getTransactions();
+    this.accountTransactionList = await transactions;
   }
 
+  viewTransactionDetails(data: AccountTransactionModel): void {
+    this.showTransactionDetailsDialog = true;
+    this.currentTransactionData = data;
+  }
+
+  ngOnInit(): void {
+    this.getTransactions();
+  }
 }

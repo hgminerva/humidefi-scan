@@ -1,7 +1,7 @@
 export class AccountTransactionModel {
     hash: string = "";
     method: string = "";
-    block: string = "";
+    blocks: string = "";
     age: string = "";
     from: string = "";
     to: string = "";
