@@ -1,3 +1,16 @@
+<div class="grid">
+    <div class="col-12 md:col-12 lg:col-12">
+        <div class="p-inputgroup">
+            <input type="text" pInputText placeholder="Search Address" [(ngModel)]="accountAddress"
+                class="p-inputtext-sm">
+            <button type="button" pButton pRipple class="p-button p-button-danger" (click)="searchClick()"
+                icon="pi pi-search" label=""></button>
+        </div>
+        <div class="text-xl font-medium pt-3 px-2 text-gray-600" style="height: 50px;">
+            Address: {{accountAddress}}
+        </div>
+    </div>
+</div>
 <div class="grid pt-2">
     <div class="col-12 md:col-12 lg:col-5">
         <div class="card border-round-2xl" style="box-shadow: 3px 2px 5px 0px #dfdfdf !important;">
@@ -7,13 +20,13 @@
                         Balance
                     </div>
                     <div class="p-inputgroup">
-                        <input class="balance-value text-2xl" [(ngModel)]="umiBalance" type="text" pInputText
+                        <input class="balance-value text-2xl" [(ngModel)]="umiBalance" type="text" pInputText readonly
                             placeholder="00.0">
                         <img src="./../../../../assets/img/tokens/UMI.png" width="50" />
                     </div>
                     <br />
                     <div class="p-inputgroup">
-                        <input class="balance-value text-2xl" [(ngModel)]="phpUBalance" type="text" pInputText
+                        <input class="balance-value text-2xl" [(ngModel)]="phpUBalance" type="text" pInputText readonly
                             placeholder="00.0">
                         <img src="./../../../../assets/img/tokens/PHPU.png" width="50" />
                     </div>
@@ -29,7 +42,6 @@
                     <div class="text-xl font-medium mb-3 text-white">
                         More Information
                     </div>
-
                 </div>
             </div>
         </div>

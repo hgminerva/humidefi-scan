@@ -1,7 +1,5 @@
 import { DecimalPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AppSettings } from 'src/app/app-settings';
-import { PhpuContractService } from 'src/app/services/phpu-contract/phpu-contract.service';
 import { ScanService } from 'src/app/services/scan/scan.service';
 
 @Component({
@@ -13,31 +11,32 @@ export class BalanceInfoComponent implements OnInit {
 
   constructor(
     private scanService: ScanService,
-    private appSetting: AppSettings,
-    private phpuContractService: PhpuContractService,
     private decimalPipe: DecimalPipe
   ) { }
 
-  umiBalance: string = '0';
-  phpUBalance: number = 0;
+  accountAddress: string = '';
+  umiBalance: string = '0.00000';
+  phpUBalance: string = '0.00000';
 
-  public searchClick(accountAddress: string) {
-    this.scanService.getAccountBalance(accountAddress).then(balance => {
-      this.umiBalance = balance;
-    })
+  async getChainDexBalance(accountAddress: string) {
+    let keypair = await this.scanService.generateKeypair(accountAddress);
+    let chainDexBalance: Promise<string> = this.scanService.getChainDexBalance(keypair);
 
-    this.scanService.getAccountDetail(accountAddress);
+    this.umiBalance = this.decimalPipe.transform((await chainDexBalance), "1.5-5") || "0.00000";
   }
 
-  async getDexPHPUBalance() {
-    let keypair = this.appSetting.dexAccount;
-    let phpuContractBalance = await this.phpuContractService.psp22BalanceOf(keypair);
+  async getPhpuContractPsp22BalanceOf(accountAddress: string) {
+    let keypair = await this.scanService.generateKeypair(accountAddress);
+    let phpuContractBalance = await this.scanService.getPhpuContractPsp22BalanceOf(keypair);
 
-    let balance = parseFloat((this.decimalPipe.transform(phpuContractBalance, "1.5-5") || "0").replace(/,/g, ''));
-    this.phpUBalance = balance;
+    this.phpUBalance = this.decimalPipe.transform((phpuContractBalance), "1.5-5") || "0.00000";
+  }
+
+  searchClick(): void {
+    this.getChainDexBalance(this.accountAddress);
+    this.getPhpuContractPsp22BalanceOf(this.accountAddress);
   }
 
   ngOnInit(): void {
   }
-
 }

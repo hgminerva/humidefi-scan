@@ -11,14 +11,6 @@ export class ScanComponent implements OnInit {
 
   constructor() { }
 
-  searchAddressInput: string = '';
-  accountAddress: string = '';
-
-  searchClick() {
-    this.searchAddressInput = this.accountAddress;
-    this.balanceInfoComponent.searchClick(this.accountAddress);
-  }
-
   ngOnInit(): void {
   }
 }
