@@ -4,27 +4,33 @@
 
 <div class="header-container">
     <div class="grid">
-        <div class="col-6 align-items-right"></div>
         <div class="col-6 align-items-right">
-            <p-menubar class="align-items-right p-inputtext-sm" [model]="headerMenuItems">
+            <div class="flex align-content-center">
+                <div class="flex align-items-center header-title text-gray-800"
+                    style="min-width: 200px; min-height: 30px;">
+                    {{titleName}}
+                </div>
+            </div>
+        </div>
+        <div class="col-6 align-items-right">
+            <p-menubar class="align-items-right p-inputtext-sm" [style]="{'float':'right', 'margin-top':'-7px'}" [model]="headerMenuItems">
                 <ng-template pTemplate="end">
                     <p-dropdown [options]="networks" placeholder="Network" [(ngModel)]="selectedNetwork"
-                    (onChange)="networkOnChange($event)" class="p-inputtext-sm"
-                    >
-                    <ng-template pTemplate="selectedItem">
-                        <i *ngIf="selectedNetwork == 'testnet'"></i>
-                        <i *ngIf="selectedNetwork == 'devnet'"></i>
-                        &nbsp;
-                        <span class="text-sl">
-                            {{selectedNetwork}}
-                        </span>
-                    </ng-template>
-                    <ng-template let-item pTemplate="item">
-                        <span class="text-sl">
-                            {{item}}
-                        </span>
-                    </ng-template>
-                </p-dropdown>
+                        (onChange)="networkOnChange($event)" class="p-inputtext-sm ml-2">
+                        <ng-template pTemplate="selectedItem">
+                            <i *ngIf="selectedNetwork == 'testnet'"></i>
+                            <i *ngIf="selectedNetwork == 'devnet'"></i>
+                            &nbsp;
+                            <span class="text-sl">
+                                {{selectedNetwork}}
+                            </span>
+                        </ng-template>
+                        <ng-template let-item pTemplate="item">
+                            <span class="text-sl">
+                                {{item}}
+                            </span>
+                        </ng-template>
+                    </p-dropdown>
                 </ng-template>
             </p-menubar>
         </div>

@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   home!: MenuItem;
   headerMenuItems: MenuItem[] = [
     { label: 'Scan', routerLink: '/dapp/scan' },
-    { label: 'Block', routerLink: '/dapp/blocks'  },
+    { label: 'Block', routerLink: '/dapp/blocks' },
     { label: 'Contract', routerLink: '/dapp/contract' },
     { label: 'App', url: 'https://app.humidefi.com' }
   ];
@@ -38,6 +38,10 @@ export class HeaderComponent implements OnInit {
             this.iconName = "pi pi-search";
             this.titleName = "Scan";
             break;
+            case '/dapp/blocks':
+              this.iconName = "pi pi-th-large";
+              this.titleName = "Block";
+              break;
           case '/dapp/contract':
             this.iconName = "pi pi-file-edit";
             this.titleName = "Contract";

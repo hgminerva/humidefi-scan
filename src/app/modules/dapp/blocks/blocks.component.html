@@ -1,35 +1,63 @@
 <div class="dapp-container">
-    <div class="grid">
-        <div class="col-12 md:col-12 lg:col-12 ">
-            <div class="card border-round-3xl" style="box-shadow: 3px 2px 5px 0px #dfdfdf !important;">
-                <div class="flex-wrap card-container overflow-hidden w-full">
-                    <div class="bg-white px-6 pt-4 pb-4 border-round-3xl" style="height: calc(92vh - 130px)">
-                        <p-table [value]="blocks" responsiveLayout="scroll" [scrollable]="true" scrollHeight="flex">
-                            <ng-template pTemplate="header">
-                                <tr>
-                                    <th style="width: 10px">Time</th>
-                                    <th style="width: 10px">Block</th>
-                                    <th style="width: 100%">Extrinsic</th>
-                                    <th style="width: 10px">Weight</th>
-                                    <th style="width: 10px">Signature</th>
-                                </tr>
-                            </ng-template>
-                            <ng-template pTemplate="body" let-block>
-                                <tr>
-                                    <td style="width: 10px">{{ convertMsToTime(block.timestamp)}}</td>
-                                    <td style="width: 10px">{{block.block}}</td>
-                                    <td style="width: 100%">
-                                        <ul class="ul-extrinsic" >
-                                            <ng-container *ngFor="let extrinsic of block.extrinsics; let i = index">
-                                                <li [ngClass]="{ extrinsic: extrinsic.extrinsic == 'system.ExtrinsicSuccess'}" class="latestExtrinsic">{{extrinsic.extrinsic}}</li> 
-                                            </ng-container>
-                                        </ul >
-                                    </td>
-                                    <td style="width: 10px">{{block.weight | number}}</td>
-                                    <td style="width: 10px">{{ getSubstring(block.signature)}}</td>
-                                </tr>
-                            </ng-template>
-                        </p-table>
+    <div class="w-full">
+        <!-- <div class="grid">
+            <div class="col-12 md:col-12 lg:col-12 px-2 pb-4 pt-2">
+                <span class="text-gray-600">
+                    Pellentesque fermentum, ut consectetur eros
+                    ex ornare lectus. <img src="./../../../../assets/img/home/humedifi_logo.png" width="80"
+                        style="margin: 2px 3px -4px 3px;" /> Pellentesque pulvinar neque quis est vulputate sagittis.
+                    Aliquam nec sapien et lorem faucibus mattis sed sed lorem. Ut sed tincidunt dolor, non placerat est.
+                    Ut id vestibulum lectus. Donec condimentum nibh non turpis dignissim semper. Proin sollicitudin
+                    nulla a augue fermentum tempor.
+                </span>
+            </div>
+        </div> -->
+        <app-balance-info></app-balance-info>
+        <div class="grid pt-2">
+            <div class="col-12 md:col-12 lg:col-12">
+                <div class="card border-round-2xl" style="box-shadow: 3px 2px 5px 0px #dfdfdf !important;">
+                    <div class="flex-wrap card-container overflow-hidden w-full">
+                        <div class="bg-white px-5 pt-4 pb-4 border-round-2xl" style="min-height: 180px;">
+                            <div class="w-full">
+                                <div class="grid pt-2">
+                                    <div class="col-12 md:col-12 lg:col-6">
+                                        <div class="text-xl font-medium mb-3" style="color: #ef4943">
+                                            Blocks
+                                        </div>
+                                    </div>
+                                    <div class="col-12 md:col-12 lg:col-6 text-right">
+                                        <!-- <button pButton type="button" label="Export" icon="pi pi-download"
+                                            class="p-button p-button-success" [style]="{'margin-top':'-10px'}"></button> -->
+                                    </div>
+                                </div>
+                                <p-table [value]="blocks" responsiveLayout="scroll" [scrollable]="true" scrollHeight="flex">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th style="width: 10px">Time</th>
+                                            <th style="width: 10px">Block</th>
+                                            <th style="width: 100%">Extrinsic</th>
+                                            <th style="width: 10px">Weight</th>
+                                            <th style="width: 10px">Signature</th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-block>
+                                        <tr>
+                                            <td style="width: 10px">{{ convertMsToTime(block.timestamp)}}</td>
+                                            <td style="width: 10px">{{block.block}}</td>
+                                            <td style="width: 100%">
+                                                <ul class="ul-extrinsic" >
+                                                    <ng-container *ngFor="let extrinsic of block.extrinsics; let i = index">
+                                                        <li [ngClass]="{ extrinsic: extrinsic.extrinsic == 'system.ExtrinsicSuccess'}" class="latestExtrinsic">{{extrinsic.extrinsic}}</li> 
+                                                    </ng-container>
+                                                </ul >
+                                            </td>
+                                            <td style="width: 10px">{{block.weight | number}}</td>
+                                            <td style="width: 10px">{{ getSubstring(block.signature)}}</td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

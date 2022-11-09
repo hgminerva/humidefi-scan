@@ -2,64 +2,22 @@ import { Injectable } from '@angular/core';
 import { AppSettings } from 'src/app/app-settings';
 import { ApiPromise, WsProvider } from '@polkadot/api';
 import { Keyring } from '@polkadot/keyring';
-import { BN, formatBalance } from '@polkadot/util';
-
-// const { ApiPromise } = require('@polkadot/api');
+import { formatBalance } from '@polkadot/util';
+import { ContractPromise } from '@polkadot/api-contract';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScanService {
 
-  wsProvider;
-
   constructor(
     private appSettings: AppSettings
-  ) {
-    let network: any = localStorage.getItem('network') == null ? '' : localStorage.getItem('network');
-    if (network.toLowerCase() == 'Main') {
-      this.wsProvider = new WsProvider(this.appSettings.wsProviderEndpoint);
-    } else if (network.toLowerCase() == 'Test') {
-      this.wsProvider = new WsProvider(this.appSettings.localWSProviderEndpoint);
-    }
-  }
+  ) { }
 
-  async getAccountDetail(account: string) {
-    const api = await ApiPromise.create({ provider: this.wsProvider });
-    let accountDetail = await api.query.system.account(account);
-    let entries = await api.query.system.account(account);
-    const multiQuery = await api.queryMulti([[api.query.system.account, account]]);
-
-    const [entryHash, entrySize] = await Promise.all([
-      api.query.system.account.hash(account),
-      api.query.system.account.size(account)
-    ]);
-
-    console.log(`The current size is ${entrySize} bytes with a hash of ${entryHash}`);
-    // const finalizedHeads = await api.rpc.chain.subscribeFinalizedHeads;
-
-    console.log('entries', entries);
-    console.log('query', multiQuery);
-    console.log('account detail', accountDetail);
-
-    const query = await api.query.system.account;
-
-    // Display some info on a specific entry
-    console.log(query);
-    console.log(`query key: ${api.query.system.account.key(account)}`);
-  }
-
-  async getAccountBalance(account: string): Promise<string> {
-    const api = await ApiPromise.create({ provider: this.wsProvider });
-    let { data: { free: previousFree }, nonce: previousNonce } = await api.query.system.account(account);
-    const free = formatBalance(`${previousFree}`);
-
-    const _account = await api.query.system.account(account);
-
-    console.log(_account);
-
-    return `${previousFree}`;
-  }
+  wsProvider = new WsProvider(this.appSettings.wsProviderEndpoint);
+  api = ApiPromise.create({ provider: this.wsProvider });
+  metadata: any = require("./../../../assets/contracts/phpu_abi.json");
+  contractAddress: string = this.appSettings.phpuContractAddress;
 
   async generateKeypair(address: string): Promise<string> {
     const keyring = new Keyring({ type: 'sr25519', ss58Format: 0 });
@@ -68,16 +26,31 @@ export class ScanService {
     return hexPair.address;
   }
 
-  async getBalance(keypair: string): Promise<string> {
-    const api = await ApiPromise.create({ provider: this.wsProvider });
-
+  async getChainDexBalance(keypair: string): Promise<string> {
+    const api = await this.api;
     const { nonce, data: balance } = await api.query.system.account(keypair);
     const chainDecimals = api.registry.chainDecimals[0];
     formatBalance.setDefaults({ decimals: chainDecimals, unit: 'UMI' });
     formatBalance.getDefaults();
 
-    const free = formatBalance(chainDecimals);
+    const free = formatBalance(balance.free, { forceUnit: "UMI", withUnit: false });
 
     return free.split(',').join('');
+  }
+
+  async getPhpuContractPsp22BalanceOf(owner: string): Promise<number> {
+    const keyring = new Keyring({ type: 'sr25519', ss58Format: 0 });
+    const aliceHex = keyring.addFromUri('//Alice', { name: 'Alice' });
+    const api = await this.api;
+    const contract = new ContractPromise(api, this.metadata, this.contractAddress);
+    const options = { storageDepositLimit: null, gasLimit: -1 };
+    const decimals = parseFloat(String((await contract.query['decimal'](aliceHex.address, options)).output?.toHuman()));
+    const balanceOf = (await contract.query['psp22::balanceOf'](aliceHex.address, options, owner)).output;
+
+    if (balanceOf != null) {
+      return parseFloat(String(balanceOf?.toHuman()).split(',').join('')) / (10 ** decimals);
+    }
+
+    return 0;
   }
 }

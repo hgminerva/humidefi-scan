@@ -18,6 +18,7 @@ export class SidebarComponent implements OnInit {
       { label: 'Scan', routerLink: '/dapp/scan', icon: 'pi pi-search' },
       { label: 'Block', routerLink: '/dapp/blocks', icon: 'pi pi-th-large' },
       { label: 'Contract', routerLink: '/dapp/contract', icon: 'pi pi-file-edit' },
+      { label: 'App', url: 'https://app.humidefi.com', icon: 'pi pi-globe' }
     ];
   }
 }

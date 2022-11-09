@@ -21,19 +21,19 @@ import { FileUploadModule } from 'primeng/fileupload';
 
 import { DappComponent } from './dapp.component';
 import { ScanComponent } from './scan/scan.component';
+import { BlocksComponent } from './blocks/blocks.component';
 import { ContractComponent } from './contract/contract.component';
 import { BalanceInfoComponent } from './balance-info/balance-info.component';
 import { TransactionsComponent } from './transactions/transactions.component';
-import { BlocksComponent } from './blocks/blocks.component';
 
 @NgModule({
   declarations: [
     DappComponent,
     ScanComponent,
+    BlocksComponent,
     ContractComponent,
     BalanceInfoComponent,
-    TransactionsComponent,
-    BlocksComponent
+    TransactionsComponent
   ],
   imports: [
     CommonModule,

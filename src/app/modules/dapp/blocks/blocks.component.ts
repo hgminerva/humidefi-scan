@@ -1,8 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Table } from 'primeng/table';
 import { BlockService } from 'src/app/services/block/block.service';
-import { PolkadotService } from 'src/app/services/polkadot/polkadot.service';
+import { BalanceInfoComponent } from '../balance-info/balance-info.component';
 
 @Component({
   selector: 'app-blocks',
@@ -10,6 +9,7 @@ import { PolkadotService } from 'src/app/services/polkadot/polkadot.service';
   styleUrls: ['./blocks.component.scss']
 })
 export class BlocksComponent implements OnInit {
+  @ViewChild(BalanceInfoComponent) balanceInfoComponent: any;
   
   constructor(
     private blockService: BlockService,
@@ -63,7 +63,6 @@ export class BlocksComponent implements OnInit {
     let last = str.substring(str.length - 3, str.length );
     return first + '...' + last;
   }
-
 
   ngOnInit(): void {
     this.getBlocks();

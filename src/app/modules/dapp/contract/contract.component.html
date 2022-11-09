@@ -1,6 +1,6 @@
 <div class="dapp-container">
     <div class="w-full">
-        <div class="grid">
+        <!-- <div class="grid">
             <div class="col-12 md:col-12 lg:col-12 px-2 pb-4 pt-2">
                 <span class="text-gray-600">
                     Pellentesque fermentum, ut consectetur eros
@@ -11,20 +11,7 @@
                     nulla a augue fermentum tempor.
                 </span>
             </div>
-        </div>
-        <div class="grid pt-2">
-            <div class="col-12 md:col-12 lg:col-12">
-                <div class="p-inputgroup">
-                    <input type="text" pInputText placeholder="Search Address" [(ngModel)]="accountAddress"
-                        class="p-inputtext-lg">
-                    <button type="button" pButton pRipple class="p-button p-button-secondary" (click)="searchClick()"
-                        icon="pi pi-search" label="Search"></button>
-                </div>
-                <div class="text-xl font-medium pt-3 px-2 text-gray-600" style="height: 50px;">
-                    Address: {{searchAddressInput}}
-                </div>
-            </div>
-        </div>
+        </div> -->
         <app-balance-info></app-balance-info>
         <div class="grid pt-2">
             <div class="col-12 md:col-12 lg:col-12">
@@ -35,7 +22,7 @@
                                 <div class="grid pt-2">
                                     <div class="col-12 md:col-12 lg:col-6">
                                         <div class="text-xl font-medium mb-3" style="color: #ef4943">
-                                            Transactions
+                                            Smart Contract Transactions
                                         </div>
                                     </div>
                                     <div class="col-12 md:col-12 lg:col-6 text-right">
@@ -56,29 +43,67 @@
     </div>
 </div>
 
-<p-dialog [(visible)]="showUploadDialog" [style]="{width: '70vw'}" [modal]="true" [closable]="false">
+<p-dialog [(visible)]="showUploadDialog" [style]="{width: '70vw'}" [modal]="true" [closable]="true">
+    <ng-template pTemplate="header">
+        <span class="text-2xl">
+            Upload & Deploy your Smart Contract
+        </span>
+    </ng-template>
+    <p-messages></p-messages>
     <p-fileUpload [chooseLabel]="'Select Files'" [chooseStyleClass]="'p-button p-button-outlined'"
         [uploadLabel]="'Upload & Deploy'" [uploadStyleClass]="'p-button p-button-success'"
         [cancelStyleClass]="'p-button p-button-danger'" [multiple]="true" [fileLimit]="2" [customUpload]="true"
-        (onSelect)="onSelect($event)" (onClear)="onClear()" (uploadHandler)="uploadHandler($event)">
+        (onSelect)="onSelect($event)" (onClear)="onClear()" (uploadHandler)="uploadHandler($event)" #fileUpload>
         <ng-template pTemplate="toolbar">
-
+            <br />
+            <br />
+            <span>
+                &nbsp;You can only upload metadata and wasm file.
+            </span>
         </ng-template>
         <ng-template let-file pTemplate="file">
         </ng-template>
         <ng-template pTemplate="content" let-files>
             <div *ngIf="constructors.length > 0">
-                <p-tabView>
+                <p-tabView [activeIndex]="activeIndex">
                     <p-tabPanel header="Files">
-                        <div *ngFor="let file of files">
-                            {{file.name}} {{file.size}}
-                        </div>
+                        <p-table [value]="files" styleClass="account-transaction-table">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Size</th>
+                                    <th style="text-align: right;">Remove</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-i="rowIndex" let-file>
+                                <tr class="transaction-tr">
+                                    <td class="transaction-td">{{file.name}}</td>
+                                    <td class="transaction-td">{{ decimalPipe.transform((file.size), "1.0-5") || "0" }}
+                                        Bytes</td>
+                                    <td style="text-align: right;">
+                                        <button pButton type="button" label="" icon="pi pi-times"
+                                            class="p-button p-button-text p-button-secondary"
+                                            (click)="fileUpload.remove($event, i)"></button>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                        <button pButton type="button" label="Next" icon="pi pi-forward" [disabled]="files.length == 0"
+                            (click)="activeIndex = 1" class="p-button p-button-danger mt-3"></button>
                     </p-tabPanel>
                     <p-tabPanel header="Required Constructors">
-                        <div *ngFor="let field of constructors">
-                            <div class="field">
-                                <label for="username1" class="block">{{field.label}}</label>
-                                <input id="username1" type="username" aria-describedby="username1-help" pInputText />
+                        <div class="grid pt-2">
+                            <div class="col-12 md:col-12 lg:col-6">
+                                <div *ngFor="let field of constructors">
+                                    <div class="field">
+                                        <label for="username1" class="block">{{field.label}}</label>
+                                        <input id="username1" type="username" aria-describedby="username1-help"
+                                            pInputText [(ngModel)]="field.value" [style]="{'width':'100%'}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 md:col-12 lg:col-6">
+
                             </div>
                         </div>
                     </p-tabPanel>
@@ -86,6 +111,10 @@
             </div>
         </ng-template>
     </p-fileUpload>
+    <ng-template pTemplate="footer">
+        <br />
+        <br />
+    </ng-template>
 </p-dialog>
 
 <p-dialog [(visible)]="showProcessDialog" [style]="{width: '50vw'}" [modal]="true" [closable]="false">

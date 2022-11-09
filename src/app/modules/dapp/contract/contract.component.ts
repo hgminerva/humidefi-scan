@@ -4,21 +4,23 @@ import { ContractUploaderService } from 'src/app/services/contract-uploader/cont
 import camelCase from 'camelcase';
 import { ContractModel } from 'src/app/models/contract.model';
 import { BalanceInfoComponent } from '../balance-info/balance-info.component';
+import { DecimalPipe } from '@angular/common';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-contract',
   templateUrl: './contract.component.html',
-  styleUrls: ['./contract.component.scss']
+  styleUrls: ['./contract.component.scss'],
+  providers: [MessageService]
 })
 export class ContractComponent implements OnInit {
   @ViewChild(BalanceInfoComponent) balanceInfoComponent: any;
 
   constructor(
-    private contractUploaderService: ContractUploaderService
+    private contractUploaderService: ContractUploaderService,
+    public decimalPipe: DecimalPipe,
+    private messageService: MessageService
   ) { }
-
-  searchAddressInput: string = '';
-  accountAddress: string = '';
 
   showUploadDialog: boolean = false;
   contract: ContractModel = new ContractModel();
@@ -31,6 +33,8 @@ export class ContractComponent implements OnInit {
   isUploadProcessed: boolean = false;
   isUploadError: boolean = false;
   uploadSubscription: Subscription = new Subscription;
+
+  activeIndex: number = 0;
 
   onSelect(event: any): void {
     let files = event.currentFiles;
@@ -56,7 +60,7 @@ export class ContractComponent implements OnInit {
 
         let wasmFileReader = new FileReader();
         wasmFileReader.onload = (e) => {
-          let wasm: any = wasmFileReader.result
+          let wasm: any = wasmFileReader.result;
           if (wasm != null) {
             let objArgs: any = {};
             let metadataObjects = JSON.parse(metadata);
@@ -88,10 +92,10 @@ export class ContractComponent implements OnInit {
             }
 
             this.contract = {
-              metadata: metadata,
+              metadata: JSON.stringify(JSON.parse(metadata)),
               wasm: wasm,
               params: params
-            }
+            };
           }
         }
         wasmFileReader.readAsBinaryString(wasmFile);
@@ -106,57 +110,73 @@ export class ContractComponent implements OnInit {
   }
 
   uploadHandler(event: any): void {
-    if (this.contract) {
-      this.showProcessDialog = true;
+    let valid = true;
 
-      this.isProcessing = true;
-      this.uploadProcessMessage = "Processing..."
-      this.isUploadProcessed = false;
-      this.isUploadError = false;
+    if (this.constructors.length > 0) {
+      for (let i = 0; i < this.constructors.length; i++) {
+        if (this.constructors[i].value == null) {
+          valid = false;
+          break;
+        }
+      }
+    }
 
-      this.contractUploaderService.upload(this.contract);
-      let uploadEventMessages = this.contractUploaderService.uploadEventMessages.asObservable();
+    if (valid == true) {
+      if (this.contract) {
+        if (this.constructors.length > 0) {
+          for (let i = 0; i < this.constructors.length; i++) {
+            this.contract.params[i][this.constructors[i].label] = this.constructors[i].value;
+          }
+        }
 
-      this.uploadSubscription = uploadEventMessages.subscribe(
-        message => {
-          if (message != null) {
-            if (message.hasError == true) {
+        this.showProcessDialog = true;
+
+        this.isProcessing = true;
+        this.uploadProcessMessage = "Processing..."
+        this.isUploadProcessed = false;
+        this.isUploadError = false;
+
+        this.contractUploaderService.upload(this.contract);
+        let uploadEventMessages = this.contractUploaderService.uploadEventMessages.asObservable();
+
+        this.uploadSubscription = uploadEventMessages.subscribe(
+          message => {
+            if (message != null) {
+              if (message.hasError == true) {
+                this.isProcessing = false;
+                this.uploadProcessMessage = message.message;
+                this.isUploadProcessed = false;
+                this.isUploadError = true;
+
+                this.uploadSubscription.unsubscribe();
+              } else {
+                if (message.isFinalized != true) {
+                  this.uploadProcessMessage = message.message;
+                } else {
+                  this.isProcessing = false;
+                  this.uploadProcessMessage = "Upload Complete!"
+                  this.isUploadProcessed = true;
+                  this.isUploadError = false;
+
+                  this.uploadSubscription.unsubscribe();
+                }
+              }
+            } else {
               this.isProcessing = false;
-              this.uploadProcessMessage = message.message;
+              this.uploadProcessMessage = "Somethings went wrong";
               this.isUploadProcessed = false;
               this.isUploadError = true;
 
               this.uploadSubscription.unsubscribe();
-            } else {
-              if (message.isFinalized != true) {
-                this.uploadProcessMessage = message.message;
-              } else {
-                this.isProcessing = false;
-                this.uploadProcessMessage = "Upload Complete!"
-                this.isUploadProcessed = true;
-                this.isUploadError = false;
-
-                this.uploadSubscription.unsubscribe();
-              }
             }
-          } else {
-            this.isProcessing = false;
-            this.uploadProcessMessage = "Somethings went wrong";
-            this.isUploadProcessed = false;
-            this.isUploadError = true;
-
-            this.uploadSubscription.unsubscribe();
           }
-        }
-      );
+        );
+      }
+    } else {
+      this.messageService.add({ severity: 'error', summary: 'Upload Failed', detail: 'Please do not leave empty fields on the required constructors.' });
     }
   }
 
-  searchClick() {
-    this.searchAddressInput = this.accountAddress;
-    this.balanceInfoComponent.searchClick(this.accountAddress);
-  }
-  
   ngOnInit(): void {
 
   }
