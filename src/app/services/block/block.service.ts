@@ -13,9 +13,9 @@ export class BlockService {
     private appSettings: AppSettings
   ) {
     let network: any = localStorage.getItem('network') == null ? '' : localStorage.getItem('network');
-    if (network.toLowerCase() == 'Main') {
+    if (network == 'Main') {
       this.wsProvider = new WsProvider(this.appSettings.wsProviderEndpoint);
-    } else if (network.toLowerCase() == 'Test') {
+    } else if (network == 'Test') {
       this.wsProvider = new WsProvider(this.appSettings.localWSProviderEndpoint);
     }
   }
