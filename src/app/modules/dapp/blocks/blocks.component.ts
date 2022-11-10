@@ -10,14 +10,16 @@ import { BalanceInfoComponent } from '../balance-info/balance-info.component';
 })
 export class BlocksComponent implements OnInit {
   @ViewChild(BalanceInfoComponent) balanceInfoComponent: any;
-  
+
   constructor(
     private blockService: BlockService,
     private datepipe: DatePipe
   ) { }
 
   blocks: any[] = [];
-  blocksArray:any[] = [];
+  blocksArray: any[] = [];
+  currentBlock: any = {};
+  showBlockDetailsDialog: boolean = false;
 
   selectedNetwork: string = '';
   networks: any[] = [{
@@ -58,10 +60,59 @@ export class BlocksComponent implements OnInit {
     )}`;
   }
 
-  getSubstring(str: string){
+  getSubstring(str: string) {
     let first = str.substring(0, 4);
-    let last = str.substring(str.length - 3, str.length );
+    let last = str.substring(str.length - 3, str.length);
     return first + '...' + last;
+  }
+
+  viewBlockDetails(block: any): void {
+    this.currentBlock = block;
+    this.showBlockDetailsDialog = true;
+  }
+
+  getExtrinsincs(extrinsicsArray: any[]): string {
+    let extrinsics: string = "";
+
+    if (extrinsicsArray != null) {
+      if (extrinsicsArray.length > 0) {
+        for (let i = 0; i < extrinsicsArray.length; i++) {
+          extrinsics += extrinsicsArray[i].extrinsic + '\n';
+        }
+      }
+    }
+
+    return extrinsics;
+  }
+
+  formatDate(date: any) {
+    let _date: Date = new Date(date);
+    let current_date: Date = new Date();
+
+    let message_date = this.datepipe.transform(_date, 'yyyy-MM-dd');
+    let date_now = this.datepipe.transform(new Date(), 'yyyy-MM-dd');
+
+    if (message_date == date_now) {
+      let milliseconds = (current_date.getTime() - _date.getTime());
+
+      let hours = Math.floor((milliseconds / (1000 * 60 * 60)) % 24);
+      let minutes = Math.floor((milliseconds / (1000 * 60)) % 60);
+
+      return (hours == 0 ? '' : hours + " Hours ") + minutes + " Minutes ";
+    } else {
+      let milliseconds = (current_date.getTime() - _date.getTime());
+      let hours = Math.floor((milliseconds / (1000 * 60 * 60)) % 24);
+
+      if (hours > 24 && hours < 48) {
+        return "Yesterday";
+      } else {
+        if (_date.getFullYear() < current_date.getFullYear()) {
+          return _date.getFullYear().toString() + " Year";
+        } else {
+          return _date.getMonth() + " Month " + _date.getDay() + " Day";
+        }
+      }
+    }
   }
 
   ngOnInit(): void {

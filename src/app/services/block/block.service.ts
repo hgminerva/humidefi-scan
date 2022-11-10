@@ -23,10 +23,7 @@ export class BlockService {
       let extrinsics = (await api.rpc.chain.getBlock(`${lastHeader.hash}`)).block.extrinsics;
       let signature = `${extrinsics[0].signer}`;
 
-      let timestamp;
-      await api.query.timestamp.now((moment) => {
-        timestamp = `${moment}`;
-      });
+      const timestamp = await api.query.timestamp.now();
 
       const signedBlock = await api.rpc.chain.getBlock(`${lastHeader.hash}`);
       const apiAt = await api.at(signedBlock.block.header.hash);

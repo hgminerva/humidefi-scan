@@ -18,6 +18,7 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FileUploadModule } from 'primeng/fileupload';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 import { DappComponent } from './dapp.component';
 import { ScanComponent } from './scan/scan.component';
@@ -54,7 +55,8 @@ import { TransactionsComponent } from './transactions/transactions.component';
     MessageModule,
     InputNumberModule,
     FileUploadModule,
-    TableModule
+    TableModule,
+    InputTextareaModule
   ],
   providers: [
     DatePipe,
