@@ -13,21 +13,64 @@
             </div>
         </div>
         <div class="col-6 align-items-right">
-            <p-menubar class="align-items-right p-inputtext-sm" [style]="{'float':'right', 'margin-top':'-7px'}" [model]="headerMenuItems">
+            <p-menubar class="align-items-right p-inputtext-sm" [style]="{'float':'right', 'margin-top':'-7px'}"
+                [model]="headerMenuItems">
                 <ng-template pTemplate="end">
                     <p-dropdown [options]="networks" placeholder="Network" [(ngModel)]="selectedNetwork"
-                        (onChange)="networkOnChange($event)" class="p-inputtext-sm ml-2">
+                        (onChange)="networkOnChange($event)" class="p-inputtext-sm ml-2" [style]="{'width':'200px'}">
                         <ng-template pTemplate="selectedItem">
                             <i *ngIf="selectedNetwork == 'testnet'"></i>
                             <i *ngIf="selectedNetwork == 'devnet'"></i>
                             &nbsp;
-                            <span class="text-sl">
-                                {{selectedNetwork}}
+                            <span class="text-sl" *ngIf="selectedNetwork == 'Mainnet'">
+                                <img src="./../../../../assets/img/tokens/UMI.png" width="18"
+                                    style="float: left; margin-right: 5px;" /> {{selectedNetwork}}
+                            </span>
+                            <span class="text-sl" *ngIf="selectedNetwork == 'Testnet'">
+                                <img src="./../../../../assets/img/tokens/UMI.png" width="18"
+                                    style="float: left; margin-right: 5px;" /> {{selectedNetwork}}
+                            </span>
+                            <span class="text-sl" *ngIf="selectedNetwork == 'Local'">
+                                <img src="./../../../../assets/img/tokens/Local.png" width="18"
+                                    style="float: left; margin-right: 5px;" /> {{selectedNetwork}}
+                            </span>
+                            <span class="text-sl" *ngIf="selectedNetwork == 'Polkadot'">
+                                <img src="./../../../../assets/img/tokens/Polkadot.png" width="18"
+                                    style="float: left; margin-right: 5px;" /> {{selectedNetwork}}
+                            </span>
+                            <span class="text-sl" *ngIf="selectedNetwork == 'Astar'">
+                                <img src="./../../../../assets/img/tokens/Astar.png" width="18"
+                                    style="float: left; margin-right: 5px;" /> {{selectedNetwork}}
+                            </span>
+                            <span class="text-sl" *ngIf="selectedNetwork == 'Acala'">
+                                <img src="./../../../../assets/img/tokens/Acala.png" width="18"
+                                    style="float: left; margin-right: 5px;" /> {{selectedNetwork}}
                             </span>
                         </ng-template>
                         <ng-template let-item pTemplate="item">
-                            <span class="text-sl">
-                                {{item}}
+                            <span class="text-sl" *ngIf="item == 'Mainnet'">
+                                <img src="./../../../../assets/img/tokens/UMI.png" width="18"
+                                    style="float: left; margin-right: 10px;" /> {{item}}
+                            </span>
+                            <span class="text-sl" *ngIf="item == 'Testnet'">
+                                <img src="./../../../../assets/img/tokens/UMI.png" width="18"
+                                    style="float: left; margin-right: 10px;" /> {{item}}
+                            </span>
+                            <span class="text-sl" *ngIf="item == 'Local'">
+                                <img src="./../../../../assets/img/tokens/Local.png" width="18"
+                                    style="float: left; margin-right: 10px;" /> {{item}}
+                            </span>
+                            <span class="text-sl" *ngIf="item == 'Polkadot'">
+                                <img src="./../../../../assets/img/tokens/Polkadot.png" width="18"
+                                    style="float: left; margin-right: 10px;" /> {{item}}
+                            </span>
+                            <span class="text-sl" *ngIf="item == 'Astar'">
+                                <img src="./../../../../assets/img/tokens/Astar.png" width="18"
+                                    style="float: left; margin-right: 10px;" /> {{item}}
+                            </span>
+                            <span class="text-sl" *ngIf="item == 'Acala'">
+                                <img src="./../../../../assets/img/tokens/Acala.png" width="18"
+                                    style="float: left; margin-right: 10px;" /> {{item}}
                             </span>
                         </ng-template>
                     </p-dropdown>

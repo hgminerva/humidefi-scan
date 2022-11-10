@@ -11,7 +11,7 @@
                 </span>
             </div>
         </div> -->
-        <app-balance-info></app-balance-info>
+        <app-balance-info (filterTransactions)="filterTransactions($event)"></app-balance-info>
         <div class="grid pt-2">
             <div class="col-12 md:col-12 lg:col-12">
                 <div class="card border-round-2xl" style="box-shadow: 3px 2px 5px 0px #dfdfdf !important;">

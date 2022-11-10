@@ -7,4 +7,5 @@ export class AccountTransactionModel {
     to: string = "";
     value: string = "";
     fee:  string = "";
+    network: string = "";
 }

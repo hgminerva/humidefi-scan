@@ -30,10 +30,10 @@ export class ScanService {
     const api = await this.api;
     const { nonce, data: balance } = await api.query.system.account(keypair);
     const chainDecimals = api.registry.chainDecimals[0];
-    formatBalance.setDefaults({ decimals: chainDecimals, unit: 'UMI' });
+    formatBalance.setDefaults({ decimals: chainDecimals, unit: 'UNIT' });
     formatBalance.getDefaults();
 
-    const free = formatBalance(balance.free, { forceUnit: "UMI", withUnit: false });
+    const free = formatBalance(balance.free, { forceUnit: "UNIT", withUnit: false });
 
     return free.split(',').join('');
   }

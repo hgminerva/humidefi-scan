@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { BalanceInfoComponent } from '../balance-info/balance-info.component';
+import { TransactionsComponent } from '../transactions/transactions.component';
 
 @Component({
   selector: 'app-scan',
@@ -7,9 +7,14 @@ import { BalanceInfoComponent } from '../balance-info/balance-info.component';
   styleUrls: ['./scan.component.scss']
 })
 export class ScanComponent implements OnInit {
-  @ViewChild(BalanceInfoComponent) balanceInfoComponent: any;
+  @ViewChild(TransactionsComponent) transactionsComponent: any;
 
   constructor() { }
+
+  filterTransactions(event: any): void {
+    let address: string = event;
+    this.transactionsComponent.searchTransactionsByAddress(address);
+  }
 
   ngOnInit(): void {
   }

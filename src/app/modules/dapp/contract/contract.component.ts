@@ -3,9 +3,9 @@ import { Subscription } from 'rxjs';
 import { ContractUploaderService } from 'src/app/services/contract-uploader/contract-uploader.service';
 import camelCase from 'camelcase';
 import { ContractModel } from 'src/app/models/contract.model';
-import { BalanceInfoComponent } from '../balance-info/balance-info.component';
 import { DecimalPipe } from '@angular/common';
 import { MessageService } from 'primeng/api';
+import { TransactionsComponent } from '../transactions/transactions.component';
 
 @Component({
   selector: 'app-contract',
@@ -14,7 +14,7 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService]
 })
 export class ContractComponent implements OnInit {
-  @ViewChild(BalanceInfoComponent) balanceInfoComponent: any;
+  @ViewChild(TransactionsComponent) transactionsComponent: any;
 
   constructor(
     private contractUploaderService: ContractUploaderService,
@@ -157,6 +157,9 @@ export class ContractComponent implements OnInit {
                   this.uploadProcessMessage = "Upload Complete!"
                   this.isUploadProcessed = true;
                   this.isUploadError = false;
+
+                  this.showUploadDialog = false;
+                  this.transactionsComponent.getTransactions();
 
                   this.uploadSubscription.unsubscribe();
                 }

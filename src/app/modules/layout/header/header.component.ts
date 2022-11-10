@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
     { label: 'App', url: 'https://app.humidefi.com' }
   ];
 
-  networks: any[] = ['Main', 'Test', 'Local'];
+  networks: any[] = ['Mainnet', 'Testnet', 'Local', 'Polkadot', 'Astar', 'Acala'];
   selectedNetwork: any = "Local";
 
   constructor(

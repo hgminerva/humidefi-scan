@@ -1,5 +1,5 @@
 import { DecimalPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ScanService } from 'src/app/services/scan/scan.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { ScanService } from 'src/app/services/scan/scan.service';
   styleUrls: ['./balance-info.component.scss']
 })
 export class BalanceInfoComponent implements OnInit {
+  @Output() filterTransactions = new EventEmitter<string>();
 
   constructor(
     private scanService: ScanService,
@@ -35,6 +36,8 @@ export class BalanceInfoComponent implements OnInit {
   searchClick(): void {
     this.getChainDexBalance(this.accountAddress);
     this.getPhpuContractPsp22BalanceOf(this.accountAddress);
+
+    this.filterTransactions.emit(this.accountAddress);
   }
 
   ngOnInit(): void {

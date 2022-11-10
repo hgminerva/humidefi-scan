@@ -30,9 +30,11 @@
             <td style="max-width: 350px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                 {{transaction.to}}</td>
             <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                {{transaction.value}}</td>
+                {{ decimalPipe.transform((transaction.value), "1.5-5") || "0" }}
+            </td>
             <td style="max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                {{transaction.fee}}</td>
+                {{ decimalPipe.transform((transaction.fee), "1.5-5") || "0" }}
+            </td>
         </tr>
     </ng-template>
 </p-table>
@@ -48,7 +50,8 @@
         <div class="col-12 md:col-12 lg:col-12">
             <div class="field">
                 <label class="block">Tx Hash:</label>
-                <input type="text" pInputText readonly [style]="{'width':'100%'}" [(ngModel)]="currentTransactionData.hash" />
+                <input type="text" pInputText readonly [style]="{'width':'100%'}"
+                    [(ngModel)]="currentTransactionData.hash" />
             </div>
         </div>
     </div>
@@ -56,7 +59,8 @@
         <div class="col-12 md:col-12 lg:col-12">
             <div class="field">
                 <label class="block">Method:</label>
-                <input type="text" pInputText readonly [style]="{'width':'100%'}" [(ngModel)]="currentTransactionData.method" />
+                <input type="text" pInputText readonly [style]="{'width':'100%'}"
+                    [(ngModel)]="currentTransactionData.method" />
             </div>
         </div>
     </div>
@@ -64,13 +68,15 @@
         <div class="col-12 md:col-12 lg:col-6">
             <div class="field">
                 <label class="block">Blocks:</label>
-                <input type="text" pInputText readonly [style]="{'width':'100%'}" [(ngModel)]="currentTransactionData.blocks" />
+                <input type="text" pInputText readonly [style]="{'width':'100%'}"
+                    [(ngModel)]="currentTransactionData.blocks" />
             </div>
         </div>
         <div class="col-12 md:col-12 lg:col-6">
             <div class="field">
                 <label class="block">Age:</label>
-                <input type="text" pInputText readonly [style]="{'width':'100%'}" [(ngModel)]="currentTransactionData.age" />
+                <input type="text" pInputText readonly [style]="{'width':'100%'}"
+                    [(ngModel)]="currentTransactionData.age" />
             </div>
         </div>
     </div>
@@ -78,7 +84,8 @@
         <div class="col-12 md:col-12 lg:col-12">
             <div class="field">
                 <label class="block">From:</label>
-                <input type="text" pInputText readonly [style]="{'width':'100%'}" [(ngModel)]="currentTransactionData.from" />
+                <input type="text" pInputText readonly [style]="{'width':'100%'}"
+                    [(ngModel)]="currentTransactionData.from" />
             </div>
         </div>
     </div>
@@ -86,19 +93,28 @@
         <div class="col-12 md:col-12 lg:col-12">
             <div class="field">
                 <label class="block">To:</label>
-                <input type="text" pInputText readonly [style]="{'width':'100%'}" [(ngModel)]="currentTransactionData.to" />
+                <input type="text" pInputText readonly [style]="{'width':'100%'}"
+                    [(ngModel)]="currentTransactionData.to" />
             </div>
         </div>
     </div>
     <div class="grid">
-        <div class="col-12 md:col-12 lg:col-12">
+        <div class="col-12 md:col-12 lg:col-6">
+            <div class="field">
+                <label class="block">Value:</label>
+                <input type="text" pInputText readonly [style]="{'width':'100%'}"
+                    [(ngModel)]="currentTransactionData.value" />
+            </div>
+        </div>
+        <div class="col-12 md:col-12 lg:col-6">
             <div class="field">
                 <label class="block">Tx Fee:</label>
-                <input type="text" pInputText readonly [style]="{'width':'100%'}" [(ngModel)]="currentTransactionData.fee" />
+                <input type="text" pInputText readonly [style]="{'width':'100%'}"
+                    [(ngModel)]="currentTransactionData.fee" />
             </div>
         </div>
     </div>
-    
+
     <ng-template pTemplate="footer">
         <br />
         <br />
