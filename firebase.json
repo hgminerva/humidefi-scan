@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "site": "humidefi-app-blockchain",
+    "public": "dist/humidefi-scan",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
